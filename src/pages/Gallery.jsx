@@ -48,6 +48,22 @@ function Gallery({ authenticated }) {
     updatedImages.splice(targetIndex, 0, draggedImage);
     setData(updatedImages);
   };
+  const handleTouchStart = (event, id) => {
+    event.dataTransfer.setData("imageId", id);
+  };
+  const handleTouchOver = (event) => {
+    event.preventDefault();
+  };
+  const handleTouchDrop = (event, targetId) => {
+    event.preventDefault();
+    const sourceId = event.dataTransfer.getData("imageId");
+    const updatedImages = [...data];
+    const srcIndex = updatedImages.findIndex((img) => img.id === sourceId);
+    const targetIndex = updatedImages.findIndex((img) => img.id === targetId);
+    const [draggedImage] = updatedImages.splice(srcIndex, 1);
+    updatedImages.splice(targetIndex, 0, draggedImage);
+    setData(updatedImages);
+  };
   const filterByTag = data.filter((image) => {
     return image.tag.toLowerCase().includes(thisTag.toLowerCase());
   });
@@ -68,6 +84,9 @@ function Gallery({ authenticated }) {
               onDragStart={(e) => handleDragStart(e, image.id)}
               onDragOver={handleDragOver}
               onDrop={(e) => handleDrop(e, image.id)}
+              onTouchStart={(e) => handleTouchStart(e, image.id)}
+              onTouchMove={handleTouchOver}
+              onTouchEnd={(e) => handleTouchDrop(e, image.id)}
               draggable="true"
             >
               <p>{image.tag}</p>
