@@ -49,7 +49,11 @@ function Gallery({ authenticated }) {
     setData(updatedImages);
   };
   const handleTouchStart = (event, id) => {
-    event.dataTransfer.setData("imageId", id);
+    const isDraggableList = event.target.getAttribute("draggable") === "true";
+    if (isDraggableList) {
+      event.preventDefault();
+      event.dataTransfer.setData("imageId", id);
+    }
   };
   const handleTouchOver = (event) => {
     event.preventDefault();
