@@ -16,8 +16,8 @@ function SearchTag(props) {
   );
 }
 SearchTag.propTypes = {
-  thisTag: PropTypes.func,
-  setThisTag: PropTypes.string,
+  thisTag: PropTypes.string,
+  setThisTag: PropTypes.func,
   key: PropTypes.string,
 };
 
