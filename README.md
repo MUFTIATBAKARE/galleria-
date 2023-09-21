@@ -1,6 +1,6 @@
-### MOVIE BOX
+### IMAGE GALLERY
 
-<h3>This is a simple Vite-powered React project. The application allows users to search for movies, view movie details. It consumes data from the TMDB API.</h3>
+<h3>This is a simple Vite-powered React project. The application allows users to login, search for IMAGES, drag and drop images.</h3>
 
 ### Getting Started
 
@@ -12,7 +12,7 @@
 git clone https://github.com/MUFTIATBAKARE/galleria-.git
 </li>
 <li> Navigate to the project directory:
-cd movie-box
+cd galleria-
 </li>
 <li> Install project dependencies:
 npm install
