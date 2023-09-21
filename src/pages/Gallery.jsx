@@ -1,4 +1,4 @@
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Data from "../components/Data";
 import { auth } from "../config/firebase";
 import { signOut } from "firebase/auth";
@@ -9,18 +9,8 @@ import SearchTag from "../components/SearchTag";
 function Gallery({ authenticated }) {
   const [data, setData] = useState(Data);
   const [thisTag, setThisTag] = useState("");
-  const [error, setError] = useState(null);
-  const { userId } = useParams();
-  const [authorized, setAuthorized] = useState(false);
+  const [error, setError] = useState(null);;
   const navigate = useNavigate();
-  useEffect(() => {
-    if (authenticated && authenticated === userId) {
-      setAuthorized(true);
-    }
-  }, [authenticated, userId]);
-  if (!authorized) {
-    navigate("/");
-  }
   useEffect(() => {
     if ("ontouchstart" in window) {
       const galleryContent = document.querySelector(".gallery_content_list");
