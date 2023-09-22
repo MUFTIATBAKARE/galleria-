@@ -1,16 +1,26 @@
-import { useNavigate } from "react-router-dom";
-import Data from "../components/Data";
-import { auth } from "../config/firebase";
-import { signOut } from "firebase/auth";
-import interact from "interactjs";
 import { useEffect, useState } from "react";
-import PropTypes from "prop-types";
+import { useNavigate } from "react-router-dom";
+import { auth } from "../config/firebase";
+import { signOut, onAuthStateChanged } from "firebase/auth";
+import interact from "interactjs";
+import Data from "../components/Data";
 import SearchTag from "../components/SearchTag";
-function Gallery({ authenticated }) {
+function Gallery() {
   const [data, setData] = useState(Data);
   const [thisTag, setThisTag] = useState("");
   const [error, setError] = useState(null);;
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (!user) {
+        navigate("/");
+      }
+    });
+    return () => {
+      unsubscribe();
+    };
+  }, [navigate]);
   useEffect(() => {
     if ("ontouchstart" in window) {
       const galleryContent = document.querySelector(".gallery_content_list");
@@ -58,7 +68,6 @@ function Gallery({ authenticated }) {
   const logOut = async () => {
     try {
       await signOut(auth);
-      navigate("/");
     } catch (error) {
       console.error(error);
       setError(error);
@@ -113,7 +122,4 @@ function Gallery({ authenticated }) {
     </div>
   );
 }
-Gallery.propTypes = {
-  authenticated: PropTypes.string,
-};
 export default Gallery;
