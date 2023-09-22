@@ -138,6 +138,7 @@ li:active {
 @media screen and (min-width: 1025px) {
   .auth_content {
     gap: 48px;
+    width: 60%;
   }
   .gallery_content {
     display: grid;
