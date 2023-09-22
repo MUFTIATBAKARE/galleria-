@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { auth } from "../config/firebase";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 
 function Auth() {
@@ -10,10 +10,28 @@ function Auth() {
   const navigate = useNavigate();
   console.log(auth?.currentUser?.email);
 
+  const [user, setUser] = useState(auth.currentUser);
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setUser(user);
+        navigate("/gallery");
+      } else {
+        setUser(null);
+      }
+    });
+
+    // Clean up the listener when the component unmounts
+    return () => {
+      unsubscribe();
+    };
+  }, [navigate]);
+
   const signIn = async () => {
     try {
       await createUserWithEmailAndPassword(auth, email, password);
-      navigate(`/gallery`);
+      // The onAuthStateChanged listener will handle the navigation.
     } catch (error) {
       console.error(error);
       setError(error);
@@ -26,7 +44,7 @@ function Auth() {
 
       <h2>Image Gallery</h2>
       <div className="auth_content">
-        <p>Please, signin here</p>
+        <p>Please, sign in here</p>
 
         <input
           type="email"
@@ -42,9 +60,10 @@ function Auth() {
         />
       </div>
       <button className="auth-btn" onClick={signIn}>
-        Signin
+        Sign in
       </button>
     </div>
   );
 }
+
 export default Auth;
