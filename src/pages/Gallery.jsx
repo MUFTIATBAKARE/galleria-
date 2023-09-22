@@ -8,7 +8,7 @@ import SearchTag from "../components/SearchTag";
 function Gallery() {
   const [data, setData] = useState(Data);
   const [thisTag, setThisTag] = useState("");
-  const [error, setError] = useState(null);;
+  const [error, setError] = useState(null);
   const navigate = useNavigate();
 
   useEffect(() => {
