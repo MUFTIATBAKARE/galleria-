@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { auth } from "../config/firebase";
-import { createUserWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
+import { signInWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 
 function Auth() {
@@ -30,7 +30,7 @@ function Auth() {
 
   const signIn = async () => {
     try {
-      await createUserWithEmailAndPassword(auth, email, password);
+      await signInWithEmailAndPassword(auth, email, password);
       // The onAuthStateChanged listener will handle the navigation.
     } catch (error) {
       console.error(error);
