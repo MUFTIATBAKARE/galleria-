@@ -6,7 +6,7 @@ import Gallery from "./pages/Gallery";
 function App() {
   return (
     <Routes>
-      <Route path="/" element={<Auth id={handleUserId} />} />
+      <Route path="/" element={<Auth />} />
       <Route
         path="/gallery"
         element={<Gallery />}
