@@ -2,22 +2,18 @@ import { useState } from "react";
 import { auth } from "../config/firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
-import PropTypes from "prop-types";
 
-function Auth({ id }) {
+function Auth() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
   const navigate = useNavigate();
   console.log(auth?.currentUser?.email);
-  console.log(auth?.currentUser?.uid);
 
   const signIn = async () => {
     try {
       await createUserWithEmailAndPassword(auth, email, password);
-      console.log(auth?.currentUser?.uid);
-      id(auth?.currentUser?.uid);
-      navigate(`/gallery/${auth?.currentUser?.uid}`);
+      navigate(`/gallery`);
     } catch (error) {
       console.error(error);
       setError(error);
@@ -51,7 +47,4 @@ function Auth({ id }) {
     </div>
   );
 }
-Auth.propTypes = {
-  id: PropTypes.func,
-};
 export default Auth;
