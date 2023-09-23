@@ -138,15 +138,15 @@ li:active {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 32px;
-    margin: 16px auto;
+    gap: 16px;
+    margin: 24px auto;
     position: absolute;
     background-color: #000;
     width: 50%;
     left: 25%;
     top: 10%;
     bottom: 10%;
-    padding-bottom: 24px;
+    padding-bottom: 32px;
   }
   .gallery_content {
     display: grid;
@@ -181,7 +181,7 @@ li:active {
     left: 25%;
     top: 10%;
     bottom: 10%;
-    padding-bottom: 24px;
+    padding-bottom: 32px;
   }
   .gallery_content {
     display: grid;
