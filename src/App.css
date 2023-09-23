@@ -33,6 +33,7 @@
   font-weight: 500;
   background-color: #ffff;
   color: rgb(146, 149, 152);
+  cursor: pointer;
 }
 .gallery-container {
   display: flex;
@@ -75,6 +76,7 @@
   font-weight: 500;
   background-color: #ffff;
   color: rgb(146, 149, 152);
+  cursor: pointer;
 }
 .gallery_content {
   display: flex;
@@ -192,5 +194,6 @@ li:active {
     font-weight: 500;
     background-color: #ffff;
     color: rgb(146, 149, 152);
+    cursor: pointer;
   }
 }
