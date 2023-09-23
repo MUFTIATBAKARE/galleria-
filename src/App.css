@@ -139,12 +139,13 @@ li:active {
     align-items: center;
     justify-content: center;
     gap: 32px;
-    margin: 48px auto;
+    margin: 16px auto;
     position: absolute;
     background-color: #000;
     width: 50%;
     left: 25%;
     top: 10%;
+    bottom: 10%;
     padding-bottom: 24px;
   }
   .gallery_content {
@@ -163,7 +164,7 @@ li:active {
 /* widescreens */
 @media screen and (min-width: 1025px) {
   .auth_content {
-    gap: 48px;
+    gap: 24px;
     width: 60%;
   }
 
@@ -173,12 +174,13 @@ li:active {
     align-items: center;
     justify-content: center;
     gap: 32px;
-    margin: 48px auto;
+    margin: 16px auto;
     position: absolute;
     background-color: #000;
     width: 50%;
     left: 25%;
     top: 10%;
+    bottom: 10%;
     padding-bottom: 24px;
   }
   .gallery_content {
