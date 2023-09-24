@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { auth } from "../config/firebase";
 import { signOut, onAuthStateChanged } from "firebase/auth";
-import interact from "interactjs";
 import Data from "../components/Data";
 import SearchTag from "../components/SearchTag";
 function Gallery() {
@@ -21,50 +20,6 @@ function Gallery() {
       unsubscribe();
     };
   }, [navigate]);
-  useEffect(() => {
-    if ("ontouchstart" in window) {
-      const galleryContent = document.querySelector(".gallery_content_list");
-      if (galleryContent) {
-        interact(galleryContent)
-          .draggable({
-            onstart: (event) => {
-              const target = event.target;
-              const isDraggableList =
-                target.getAttribute("draggable") === "true";
-              if (isDraggableList) {
-                event.preventDefault();
-                const id = target.getAttribute("data-image-id");
-                event.dataTransfer.setData("imageId", id);
-              }
-            },
-            onmove: (event) => {
-              console.log(event);
-            },
-            onend: (event) => {
-              event.preventDefault();
-            },
-            // Add more touch-specific configurations as needed
-          })
-          .dropzone({
-            ondrop: (event) => {
-              event.preventDefault();
-              const sourceId = event.dataTransfer.getData("imageId");
-              const targetId = event.target.getAttribute("data-image-id");
-              const updatedImages = [...data];
-              const srcIndex = updatedImages.findIndex(
-                (img) => img.id === sourceId
-              );
-              const targetIndex = updatedImages.findIndex(
-                (img) => img.id === targetId
-              );
-              const [draggedImage] = updatedImages.splice(srcIndex, 1);
-              updatedImages.splice(targetIndex, 0, draggedImage);
-              setData(updatedImages);
-            },
-          });
-      }
-    }
-  }, [data]);
   const logOut = async () => {
     try {
       await signOut(auth);
