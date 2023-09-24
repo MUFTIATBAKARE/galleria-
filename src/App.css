@@ -65,7 +65,7 @@
     center;
 }
 .search-box::placeholder {
-  color: #fff; /* Replace with the color you want */
+  color: #fff;
 }
 .gallery-btn {
   padding: 16px;
@@ -126,10 +126,10 @@ li:active {
   text-align: justify;
 }
 .toast p {
-  font-size: 16px;
+  font-size: 12px;
 }
 .toast h6 {
-  font-size: 14px;
+  font-size: 12px;
 }
 .toast-btn {
   padding: 8px;
@@ -241,7 +241,7 @@ li:active {
       center;
   }
   .search-box::placeholder {
-    color: #fff; /* Replace with the color you want */
+    color: #fff;
   }
   .gallery-btn {
     padding: 16px;

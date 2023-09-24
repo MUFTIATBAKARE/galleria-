@@ -5,6 +5,7 @@ function Toast() {
   const closeToastMessage = () => {
     setToastMessage(false);
   };
+
   return (
     <>
       {toastMessage && (
